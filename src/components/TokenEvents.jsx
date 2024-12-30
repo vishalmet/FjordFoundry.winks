@@ -5,7 +5,7 @@ import { MdAutoGraph, MdOutlinePeopleOutline } from 'react-icons/md'
 import { BsGraphUpArrow } from 'react-icons/bs'
 import { HiUserGroup } from 'react-icons/hi'
 
-const TokenEvents = ({ onViewNow, targetDate = "2025-5-31" }) => {
+const TokenEvents = ({ onViewNow, targetDate }) => {
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
         hours: 0,
@@ -41,28 +41,28 @@ const TokenEvents = ({ onViewNow, targetDate = "2025-5-31" }) => {
                 </div>
                 <img src={FjordLogo} className='h-16 rounded-full' alt="" />
             </div>
-            <div className="bg-[#150837] w-full h-44 rounded-[25px] mt-6 p-4">
+            <div className="bg-[#150837] w-full h-fit rounded-[25px] mt-6 p-4">
                 <div className="flex justify-between items-center">
                     <div className="">
                         <p className='flex items-center gap-2 font-medium'><FaPlay className='text-[#24FF95]' /> Live Now</p>
                         <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
+                            <div className="flex gap-2">
                                 <p className='text-center'>
                                     {String(timeLeft.days).padStart(2, '0')} 
-                                    <p className='text-[#B4A3F8]'>days</p>
+                                    <p className='text-[#B4A3F8] text-sm'>days</p>
                                 </p>
-                                <p className='text-2xl'>/</p>
+                                <p className='text-base'>/</p>
                                 <p className='text-center'>
                                     {String(timeLeft.hours).padStart(2, '0')} 
-                                    <p className='text-[#B4A3F8]'>hours</p>
+                                    <p className='text-[#B4A3F8] text-sm'>hours</p>
                                 </p>
                                 <p className='text-center'>
                                     {String(timeLeft.minutes).padStart(2, '0')} 
-                                    <p className='text-[#B4A3F8]'>mins</p>
+                                    <p className='text-[#B4A3F8] text-sm'>mins</p>
                                 </p>
                                 <p className='text-center'>
                                     {String(timeLeft.seconds).padStart(2, '0')} 
-                                    <p className='text-[#B4A3F8]'>secs</p>
+                                    <p className='text-[#B4A3F8] text-sm'>secs</p>
                                 </p>
                             </div>
                         </div>
@@ -79,8 +79,8 @@ const TokenEvents = ({ onViewNow, targetDate = "2025-5-31" }) => {
                     <p className='text-white font-semibold'>Fixed Price</p>
                     <HiUserGroup className='size-6 text-[#B4A3F8]' />
                 </div>
-                <button className='w-full bg-gradient-to-b from-[#665EFF] to-[#8C85FF] p-3 rounded-full font-semibold hover:opacity-80 mt-2' onClick={onViewNow}>View Now</button>
             </div>
+                <button className='w-full bg-gradient-to-b from-[#665EFF] to-[#8C85FF] border border-[#4E3ABA] p-3 rounded-full font-semibold hover:opacity-80 mt-2' onClick={onViewNow}>View Now</button>
         </div>
     )
 }

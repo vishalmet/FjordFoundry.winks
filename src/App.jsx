@@ -9,12 +9,14 @@ const App = () => {
     setCurrentComponent('saleStatus')
   }
 
+  const targetDate = "2025-5-31"
+
   return (
     <div className=' bg-custom-bg min-h-screen flex justify-center items-center bg-contain bg-center bg-[#150836] text-white space-grotesk'>
       {currentComponent === 'tokenEvents' ? (
-        <TokenEvents onViewNow={handleViewNow} />
+        <TokenEvents targetDate={targetDate} onViewNow={handleViewNow} />
       ) : (
-        <SaleStatus />
+        <SaleStatus targetDate={targetDate} />
       )}
     </div>
   )
