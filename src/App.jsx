@@ -10,7 +10,7 @@ const App = () => {
   }
 
   return (
-    <div className=' bg-custom-bg min-h-screen flex justify-center items-center bg-contain bg-center bg-[#150836] text-white'>
+    <div className=' bg-custom-bg min-h-screen flex justify-center items-center bg-contain bg-center bg-[#150836] text-white space-grotesk'>
       {currentComponent === 'tokenEvents' ? (
         <TokenEvents onViewNow={handleViewNow} />
       ) : (
