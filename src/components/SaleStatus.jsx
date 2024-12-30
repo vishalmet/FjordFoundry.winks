@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FaAngleDown, FaPlay } from 'react-icons/fa'
 import FjordLogo from "../assets/image.webp"
+import { useAccount, useConnect } from 'wagmi'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 const SaleStatus = ({ targetDate }) => {
     const [timeLeft, setTimeLeft] = useState({
@@ -9,11 +11,19 @@ const SaleStatus = ({ targetDate }) => {
     const [showTokenModal, setShowTokenModal] = useState(false);
     const [selectedToken, setSelectedToken] = useState('USDT');
     
+    const { isConnected } = useAccount();
+    
     const tokens = ['USDT', 'ETH', 'BNB', 'MATIC'];
 
     const handleTokenSelect = (token) => {
         setSelectedToken(token);
         setShowTokenModal(false);
+    };
+
+    const handleConnectWallet = () => {
+        if (!isConnected) {
+            return;
+        }
     };
 
     useEffect(() => {
@@ -38,7 +48,6 @@ const SaleStatus = ({ targetDate }) => {
     return (
         <div className='relative w-[260px] sm:w-[430px] bg-[#30218A]/70 h-fit border-2 border-[#433099] rounded-[25px]'>
             <div className="p-1 sm:p-6">
-                {/* Timer section remains same */}
                 <div className="flex justify-between text-[#B4A3F8] text-sm sm:text-base">
                     <p>Sale Status</p>
                     <p>Ends In</p>
@@ -49,7 +58,6 @@ const SaleStatus = ({ targetDate }) => {
                     </p>
                     <div className="flex justify-between">
                         <div className="flex gap-2">
-                            {/* Timer display remains same */}
                             <p className='text-center text-xs sm:text-base'>
                                 {String(timeLeft.days).padStart(2, '0')}
                                 <p className='text-[#B4A3F8] text-xs sm:text-sm'>days</p>
@@ -117,7 +125,22 @@ const SaleStatus = ({ targetDate }) => {
                         </div>
                     </div>
                 </div>
-                <button className='w-full bg-gradient-to-b from-[#665EFF] to-[#8C85FF] border border-[#4E3ABA] p-1 sm:p-3 text-sm sm:text-base rounded-full font-semibold opacity-80 sm:mt-2 cursor-not-allowed' disabled>Connect Wallet to Swap</button>
+                {!isConnected ? (
+                    <ConnectButton.Custom>
+                        {({ openConnectModal }) => (
+                            <button onClick={openConnectModal} className='w-full bg-gradient-to-b from-[#665EFF] to-[#8C85FF] border border-[#4E3ABA] p-1 sm:p-3 text-sm sm:text-base rounded-full font-semibold hover:opacity-80 sm:mt-2'>
+                                Connect Wallet to Swap
+                            </button>
+                        )}
+                    </ConnectButton.Custom>
+                ) : (
+                    <button 
+                        onClick={handleConnectWallet}
+                        className='w-full bg-gradient-to-b from-[#665EFF] to-[#8C85FF] border border-[#4E3ABA] p-1 sm:p-3 text-sm sm:text-base rounded-full font-semibold hover:opacity-80 sm:mt-2'
+                    >
+                        Swap Tokens
+                    </button>
+                )}
             </div>
         </div>
     )
